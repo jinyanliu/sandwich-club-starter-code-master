@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -12,8 +13,8 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 public class DetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_POSITION = "extra_position";
-    private static final int DEFAULT_POSITION = -1;
+    public static final  String EXTRA_POSITION   = "extra_position";
+    private static final int    DEFAULT_POSITION = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -56,7 +57,13 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
+        TextView placeOfOrigin = findViewById(R.id.place_of_origin_tv);
+        String placeOfOriginText = sandwich.getPlaceOfOrigin();
+        if (placeOfOriginText.isEmpty()) placeOfOriginText = "Unknown";
+        placeOfOrigin.setText(placeOfOriginText);
 
+        TextView description = findViewById(R.id.description_tv);
+        description.setText(sandwich.getDescription());
     }
 }
