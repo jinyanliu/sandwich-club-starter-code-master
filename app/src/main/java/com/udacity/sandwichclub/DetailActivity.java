@@ -2,6 +2,7 @@ package com.udacity.sandwichclub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,10 +12,14 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final  String EXTRA_POSITION   = "extra_position";
     private static final int    DEFAULT_POSITION = -1;
+
+    Sandwich sandwich = new Sandwich();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +42,14 @@ public class DetailActivity extends AppCompatActivity {
 
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
+        sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
             return;
         }
 
-        populateUI(sandwich);
+        populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -57,30 +62,59 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI(Sandwich sandwich) {
+    private void populateUI() {
+        populatePlaceOfOrigin();
+        populateDescription();
+        populateAlsoKnownAs();
+        populateIngredients();
+    }
+
+    private void populatePlaceOfOrigin() {
         TextView placeOfOrigin = findViewById(R.id.place_of_origin_tv);
         String placeOfOriginText = sandwich.getPlaceOfOrigin();
-        if (placeOfOriginText.isEmpty()) {
-            placeOfOriginText = "Unknown";
-        }
+        placeOfOriginText = handleEmptyString(placeOfOriginText);
         placeOfOrigin.setText(placeOfOriginText);
+    }
 
+    private void populateDescription() {
         TextView description = findViewById(R.id.description_tv);
-        description.setText(sandwich.getDescription());
+        String descriptionText = sandwich.getDescription();
+        descriptionText = handleEmptyString(descriptionText);
+        description.setText(descriptionText);
+    }
 
+    private void populateAlsoKnownAs() {
         TextView alsoKnownAs = findViewById(R.id.also_known_as_tv);
+        String alsoKnownAsString = getString(sandwich.getAlsoKnownAs());
+        alsoKnownAsString = handleEmptyString(alsoKnownAsString);
+        alsoKnownAs.setText(alsoKnownAsString);
+    }
+
+    private void populateIngredients() {
+        TextView ingredients = findViewById(R.id.ingredients_tv);
+        String ingredientsString = getString(sandwich.getIngredients());
+        ingredientsString = handleEmptyString(ingredientsString);
+        ingredients.setText(ingredientsString);
+    }
+
+    @NonNull
+    private String handleEmptyString(String textToShow) {
+        if (textToShow.isEmpty()) {
+            textToShow = "Unknown";
+        }
+        return textToShow;
+    }
+
+    @NonNull
+    private String getString(final List<String> stringList) {
         StringBuilder alsoKnownAsStringBuilder = new StringBuilder();
-        for (int i = 0; i < sandwich.getAlsoKnownAs().size(); i++) {
+        for (int i = 0; i < stringList.size(); i++) {
             if (i == 0) {
-                alsoKnownAsStringBuilder.append(sandwich.getAlsoKnownAs().get(i));
+                alsoKnownAsStringBuilder.append(stringList.get(i));
             } else {
-                alsoKnownAsStringBuilder.append(", ").append(sandwich.getAlsoKnownAs().get(i));
+                alsoKnownAsStringBuilder.append(", ").append(stringList.get(i));
             }
         }
-        String alsoKnownAsString = alsoKnownAsStringBuilder.toString();
-        if (alsoKnownAsString.isEmpty()) {
-            alsoKnownAsString = "Unknown";
-        }
-        alsoKnownAs.setText(alsoKnownAsString);
+        return alsoKnownAsStringBuilder.toString();
     }
 }
