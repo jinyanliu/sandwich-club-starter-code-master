@@ -60,10 +60,27 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
         TextView placeOfOrigin = findViewById(R.id.place_of_origin_tv);
         String placeOfOriginText = sandwich.getPlaceOfOrigin();
-        if (placeOfOriginText.isEmpty()) placeOfOriginText = "Unknown";
+        if (placeOfOriginText.isEmpty()) {
+            placeOfOriginText = "Unknown";
+        }
         placeOfOrigin.setText(placeOfOriginText);
 
         TextView description = findViewById(R.id.description_tv);
         description.setText(sandwich.getDescription());
+
+        TextView alsoKnownAs = findViewById(R.id.also_known_as_tv);
+        StringBuilder alsoKnownAsStringBuilder = new StringBuilder();
+        for (int i = 0; i < sandwich.getAlsoKnownAs().size(); i++) {
+            if (i == 0) {
+                alsoKnownAsStringBuilder.append(sandwich.getAlsoKnownAs().get(i));
+            } else {
+                alsoKnownAsStringBuilder.append(", ").append(sandwich.getAlsoKnownAs().get(i));
+            }
+        }
+        String alsoKnownAsString = alsoKnownAsStringBuilder.toString();
+        if (alsoKnownAsString.isEmpty()) {
+            alsoKnownAsString = "Unknown";
+        }
+        alsoKnownAs.setText(alsoKnownAsString);
     }
 }
