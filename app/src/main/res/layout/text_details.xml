@@ -20,6 +20,8 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:text="@string/detail_also_known_as_label"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -32,6 +34,8 @@
         android:text="@string/detail_ingredients_label"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ingredients_tv"/>
 
@@ -44,6 +48,8 @@
         android:text="@string/detail_place_of_origin_label"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/place_of_origin_tv"/>
 
@@ -55,6 +61,8 @@
         android:text="@string/detail_description_label"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_of_origin_label"/>
 
@@ -63,6 +71,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Bombay Burger"/>
@@ -73,6 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_half_margin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@+id/also_known_as_tv"
         tools:text="Deep-fried mashed potato patty"/>
@@ -83,6 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_half_margin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@+id/ingredients_tv"
         tools:text="India"/>
@@ -93,6 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description_label"
         tools:text="Vada Pav is a vegetarian fast food dish native to the Indian state of Maharashtra. "/>

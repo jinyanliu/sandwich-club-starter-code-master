@@ -20,7 +20,9 @@ public class JsonUtils {
 
         try {
             JSONObject jsonObject = new JSONObject(json);
+
             JSONObject nameJSONObject = jsonObject.getJSONObject("name");
+
             String mainName = nameJSONObject.getString("mainName");
 
             JSONArray alsoKnownAsNameJSONArray = nameJSONObject.getJSONArray("alsoKnownAs");
@@ -34,6 +36,7 @@ public class JsonUtils {
             List<String> ingredients = getStringList(ingredientsJSONArray);
 
             return new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
+
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Failed to pass Sandwich JSON.");
             return null;

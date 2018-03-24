@@ -19,7 +19,7 @@ public class DetailActivity extends AppCompatActivity {
     public static final  String EXTRA_POSITION   = "extra_position";
     private static final int    DEFAULT_POSITION = -1;
 
-    Sandwich sandwich = new Sandwich();
+    private Sandwich sandwich = new Sandwich();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class DetailActivity extends AppCompatActivity {
     @NonNull
     private String handleEmptyString(String textToShow) {
         if (textToShow.isEmpty()) {
-            textToShow = "Unknown";
+            textToShow = getString(R.string.detail_empty_string_to_show);
         }
         return textToShow;
     }
