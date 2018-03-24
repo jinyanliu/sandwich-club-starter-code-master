@@ -8,36 +8,36 @@
     tools:context="com.udacity.sandwichclub.DetailActivity">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4"/>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4"/>
+
     <ImageView
         android:id="@+id/image_iv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/sandwich_picture_content_description"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/vada"/>
-
-    <TextView
-        android:id="@+id/origin_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/image_iv"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_iv"
-        tools:text="Vada Pav"/>
 
     <TextView
         android:layout_width="0dp"
@@ -66,6 +66,7 @@
         app:layout_constraintTop_toTopOf="@+id/ingredients_tv"/>
 
     <TextView
+        android:id="@+id/place_of_origin_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -79,17 +80,19 @@
         app:layout_constraintTop_toTopOf="@+id/place_of_origin_tv"/>
 
     <TextView
+        android:id="@+id/description_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/detail_description_label"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/description_sv"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/description_sv"/>
+        app:layout_constraintTop_toBottomOf="@+id/place_of_origin_label"/>
 
     <TextView
         android:id="@+id/also_known_as_tv"
@@ -99,7 +102,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/image_iv"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
         app:layout_constraintTop_toBottomOf="@+id/image_iv"
         tools:text="Bombay Burger"/>
 
@@ -133,12 +136,14 @@
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/place_of_origin_tv"
-        app:layout_constraintTop_toBottomOf="@+id/place_of_origin_tv">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_label">
 
         <TextView
             android:id="@+id/description_tv"
